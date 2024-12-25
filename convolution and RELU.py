@@ -55,6 +55,11 @@ kernel = tf.constant([
 plt.figure(figsize=(3, 3))
 show_kernel(kernel)
 
+# Reformat for batch compatibility.
+image = tf.image.convert_image_dtype(image, dtype=tf.float32)
+image = tf.expand_dims(image, axis=0)
+kernel = tf.reshape(kernel, [*kernel.shape, 1, 1])
+
 
 # WE filter the image to show the features to be extracted
 
